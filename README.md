@@ -2,7 +2,7 @@ Individual assignment Product Duplicate Detection - Computer Science for Busines
 
 Programming partner: Isa van Stee (574699is)
 
-This project is about reducing the computation time of a duplicate detection method by using LSH. LSH can reduce the number of pairs which have to be considered by the classifier (or clustering) method. We make use of a dataset containing TV's from 4 different Web shop and some of the TV's are duplicates. The dataset contains in total 1624 TV, from which 1262 are unique products. We use the title and the values of the key-value pairs to obtain a binary representation of a product. We do not consider all key-value pairs but only the top 10 most occurring key-value pairs in the data.
+This project is about reducing the computation time of a duplicate detection method by using LSH. LSH can reduce the number of pairs which have to be considered by the classification (or clustering) method. We apply the algorithm to a dataset containing TV's from 4 different Web shop and some of the TV's are duplicates. The dataset contains in total 1624 TV, from which 1262 are unique products. We use the title and the values of the key-value pairs to obtain a binary representation of a product. We do not consider all key-value pairs but only the top 10 most occurring key-value pairs in the data.
 
 The code is structures as follows:
 
