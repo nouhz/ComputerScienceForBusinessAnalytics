@@ -26,12 +26,8 @@ def extract_top10kvp():
     key_counts = Counter(all_keys)
     # Find the top 10 most occurring keys
     top_keys = key_counts.most_common(10)
-    print("Top 10 most occurring keys:")
-    for key, count in top_keys:
-        print(f"{key}: {count} occurrences")
-
-    return top_keys
-
+    print(top_keys)
+    
 
 # Create lists for the modelID's, titles and the top 10 most occurring key-value pairs in the dataset
 model_ids = []
@@ -114,7 +110,6 @@ df['cleaned_title'] = df['title'].apply(clean_title)
 # Returns list with model words of 1 TV title
 def extract_model_words(row):
     cleaned_title = row['cleaned_title']
-    # regex = r'\b(?:[a-zA-Z]+\d+|\d+[a-zA-Z]+)\b'
     regex = '[a-zA-Z]+[0-9]+[a-zA-Z0-9]*|[a-zA-Z0-9]*[0-9]+[a-zA-Z]+|[0-9]+[.][0-9]+[a-zA-Z]*'
 
     model_words = set(re.findall(regex, cleaned_title))
@@ -373,7 +368,7 @@ def bootstrapping(df):
         binary_matrix_train = create_binary_matrix(train_df, all_model_words_train)
         signature_matrix_train = minhash(binary_matrix_train, num_permutations_train)
 
-        # Not all possible combinations are considered due the computation time
+        # Not all possible combinations are considered due to the computation time
         possible_b_values = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 30, 50, 60, 150, 600]
         possible_r_values = [600, 300, 200, 150, 120, 100, 75, 60, 50, 40, 30, 20, 12, 10, 4, 1]
 
@@ -406,14 +401,6 @@ def bootstrapping(df):
             f1_measures_train.append(f1)
             f1star_measures_train.append(f1_star)
             fraction_of_comparisons_train.append(comparison_fraction)
-
-            print(f" For {b_candidate} bands and {r_candidate} rows (TRAINING):")
-            print(f"PairQuality: {pair_quality}")
-            print(f"PairComplete: {pair_completeness}")
-            print(f"f1: {f1}")
-            print(f"f1_star: {f1_star}")
-            print(f"t_threshold: {t_treshold}")
-            print()
 
             # Update optimal values if a better F1-measure is found
             if f1 > best_f1:
